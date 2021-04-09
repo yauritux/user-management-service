@@ -1,4 +1,4 @@
-Prerequisites
+## Prerequisites
 1. Axon Server
    ```
    docker container run -d --name dev-axon-server \
