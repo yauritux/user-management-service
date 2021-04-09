@@ -3,6 +3,7 @@ version: '3.1'
 services:
   powerbiz_read_db:
     image: postgres:11
+    container_name: powerbiz_postgres
     environment:
       - POSTGRES_PASSWORD=Default123
     ports:
@@ -12,6 +13,7 @@ services:
 
   powerbiz_axon:
     image: axoniq/axonserver:latest
+    container_name: powerbiz_axon
     ports:
       - 8024:8024
       - 8124:8124
