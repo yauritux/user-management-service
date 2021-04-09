@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  powerbiz_read_db:
+    image: postgres:11
+    environment:
+      - POSTGRES_PASSWORD=Default123
+    ports:
+      - 5432:5432
+    volumes:
+      - powerbiz_pgdata:/var/lib/postgresql/data
+
+  powerbiz_axon:
+    image: axoniq/axonserver:latest
+    ports:
+      - 8024:8024
+      - 8124:8124
+
+volumes:
+  powerbiz_pgdata:
