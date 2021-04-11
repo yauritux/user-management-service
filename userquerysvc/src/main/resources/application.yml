@@ -1,0 +1,26 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: "user-query"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    platform: "postgres"
+    url: "jdbc:postgresql://${POSTGRES_HOSTNAME}:5432/powerbiz"
+    username: postgres
+    password: Default123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+    generate-ddl: true
+
+axon:
+  serializer:
+    general: xstream
+    messages: jackson
+    events: jackson
+  axonserver:
+    servers: "${AXONSERVER_HOST}:8124"

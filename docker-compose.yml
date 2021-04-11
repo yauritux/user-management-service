@@ -1,22 +1,65 @@
 version: '3.1'
 
 services:
-  powerbiz_read_db:
+  powerbiz_readdb:
     image: postgres:11
-    container_name: powerbiz_postgres
+    container_name: powerbiz_readdb
     environment:
+      - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
+      - POSTGRES_DB=powerbiz
+      - POSTGRES_HOSTNAME=powerbiz_readdb
     ports:
       - 5432:5432
     volumes:
       - powerbiz_pgdata:/var/lib/postgresql/data
+    networks:
+      - powerbizNet
 
-  powerbiz_axon:
-    image: axoniq/axonserver:latest
+  axonserver:
+    image: axoniq/axonserver
     container_name: powerbiz_axon
+    hostname: axonserver
+    environment:
+      - AXONSERVER_HOSTNAME=axonserver
     ports:
       - 8024:8024
-      - 8124:8124
+    networks:
+      - powerbizNet
+
+  usercmdsvc:
+    build:
+      context: .
+      dockerfile: ./usercmdsvc/Dockerfile
+    container_name: user-command-svc
+    environment:
+      - AXONSERVER_HOST=axonserver
+    ports:
+      - 8081:8081
+    depends_on:
+      - axonserver
+    networks:
+      - powerbizNet
+
+  userquerysvc:
+    build:
+      context: .
+      dockerfile: ./userquerysvc/Dockerfile
+    container_name: user-query-svc
+    environment:
+      - AXONSERVER_HOST=axonserver
+      - POSTGRES_HOSTNAME=powerbiz_readdb
+    ports:
+      - 8082:8082
+    depends_on:
+      - axonserver
+      - powerbiz_readdb
+    networks:
+      - powerbizNet
 
 volumes:
   powerbiz_pgdata:
+
+networks:
+  powerbizNet:
+    driver: bridge

@@ -1,0 +1,14 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: "user-command"
+
+axon:
+  axonserver:
+    servers: "${AXONSERVER_HOST}:8124"
+  serializer:
+    general: xstream
+    messages: jackson
+    events: jackson
