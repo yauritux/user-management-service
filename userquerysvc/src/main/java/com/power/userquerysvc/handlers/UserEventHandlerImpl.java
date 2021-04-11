@@ -8,7 +8,7 @@ import org.axonframework.eventhandling.EventHandler;
 import org.springframework.stereotype.Service;
 
 @Service
-@ProcessingGroup("user-group")
+//@ProcessingGroup("user-group")
 public class UserEventHandlerImpl implements UserEventHandler {
 
     private final UserRepository userRepository;
