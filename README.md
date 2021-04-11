@@ -1,38 +1,20 @@
 ## Prerequisites
-1. Axon Server
-2. PostgreSQL
-3. Maven
+
+You merely need `Docker` to run all of the services. 
+Get it from [here](https://docs.docker.com/get-docker/).
 
 ## Run The Services
 
-1. Start the Axon server and PostgreSQL database simply by calling docker-compose as shown below:
+1. Fire up your terminal and `cd` into `user-management-service` folder.
+2. Running all of the services through this following command:
    ```
    docker-compose up
    ```
-2. Create a new database inside our PostgreSQL container. Name it as `powerbiz`.  
-   You can do this either by using your favourite Postgres db manager tools like `pgadmin`,
-   or using this following docker command:
-   ```
-   docker container exec -it powerbiz_postgres createdb --host=localhost \
-   --port=5432 --username=postgres --owner=postgres powerbiz
-   ```
-3. `cd` into `user-management-service` folder and build the project:
-   ```
-   mvn clean install
-   ```
-4. `cd` into `usercmdsvc` folder, and run the service:
-   ```
-   mvn spring-boot:run
-   ```
-5. `cd` into `userquerysvc` folder, and run the service:
-   ```
-   mvn spring-boot:run
-   ```
+   and wait for couple minutes (it depends on your network speed).
    
 ## Shutdown the Services
 
-1. Stop both `usercmdsvc` and `userquerysvc`
-2. Shutdown the Axon-Server and PostgreSQL database:
+1. You can stop all of the running services either by `CTRL+c` (break) or using this command:
    ```
    docker-compose down
    ```
