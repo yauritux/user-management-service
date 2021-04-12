@@ -1,7 +1,7 @@
 ## Prerequisites
 
 You merely need `Docker` to run all of the services. 
-Get it from [here](https://docs.docker.com/get-docker/).
+You can grab it from [here](https://docs.docker.com/get-docker/).
 
 ## Run The Services
 
@@ -14,7 +14,7 @@ Get it from [here](https://docs.docker.com/get-docker/).
    
 ## Shutdown the Services
 
-1. You can stop all of the running services either by `CTRL+c` (break) or using this command:
+1. You can stop all of the running services either by `CTRL+c` (break) or it's better to using this command which clean-up all unused resources:
    ```
    docker-compose down
    ```
