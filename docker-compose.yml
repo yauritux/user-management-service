@@ -4,6 +4,7 @@ services:
   powerbiz_readdb:
     image: postgres:11
     container_name: powerbiz_readdb
+    hostname: powerbiz_readdb
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123

@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  powerbiz_readdb:
+    image: postgres:11
+    container_name: powerbiz_readdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Default123
+      - POSTGRES_DB=powerbiz
+    ports:
+      - 5432:5432
+    volumes:
+      - powerbiz_pgdata:/var/lib/postgresql/data
+    networks:
+      - powerbizNet
+
+  axonserver:
+    image: axoniq/axonserver
+    container_name: powerbiz_axon
+    ports:
+      - 8024:8024
+      - 8124:8124
+    networks:
+      - powerbizNet
+
+volumes:
+  powerbiz_pgdata:
+
+networks:
+  powerbizNet:
+    driver: bridge
