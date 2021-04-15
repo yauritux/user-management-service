@@ -1,13 +1,49 @@
 server:
   port: 8081
+  error:
+    include-message: always
+
+logging:
+  level:
+    root: INFO
 
 spring:
   application:
     name: "user-command"
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    platform: "postgres"
+    url: "jdbc:postgresql://${POSTGRES_HOSTNAME:localhost}:5431/powerbiz_writedb"
+    username: postgres
+    password: Default123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: "org.hibernate.dialect.PostgreSQLDialect"
+    generate-ddl: true
+  rabbitmq:
+    host: "${RABBITMQ_HOST:localhost}"
+    port: 5672
+    virtual-host: /
+    username: guest
+    password: guest
+  cloud:
+    stream:
+      producer:
+        produce: false
+      default-binder: rabbit
+      default:
+        content-type: application/json
+      bindings:
+        userRegistered-out-0:
+          destination: userEvents.topic
+          producer:
+            required-groups: userEvents
 
 axon:
   axonserver:
-    servers: "${AXONSERVER_HOST}:8124"
+    servers: "${AXONSERVER_HOST:localhost}:8124"
   serializer:
     general: xstream
     messages: jackson
