@@ -7,7 +7,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     platform: "postgres"
-    url: "jdbc:postgresql://${POSTGRES_HOSTNAME}:5432/powerbiz"
+    url: "jdbc:postgresql://${POSTGRES_HOSTNAME:localhost}:5432/powerbiz_readdb"
     username: postgres
     password: Default123
   jpa:
@@ -23,4 +23,4 @@ axon:
     messages: jackson
     events: jackson
   axonserver:
-    servers: "${AXONSERVER_HOST}:8124"
+    servers: "${AXONSERVER_HOST:localhost}:8124"
