@@ -47,6 +47,10 @@ services:
   rabbitmq:
     image: rabbitmq:3
     container_name: powerbiz_rabbitmq
+    environment:
+      - RABBITMQ_HOSTNAME=powerbiz_rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
     ports:
       - 5672:5672
       - 15672:15672
