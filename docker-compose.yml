@@ -1,6 +1,22 @@
 version: '3.1'
 
 services:
+  powerbiz_writedb:
+    image: postgres:11
+    container_name: powerbiz_writedb
+    hostname: powerbiz_writedb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Default123
+      - POSTGRES_DB=powerbiz_writedb
+      - POSTGRES_HOSTNAME=powerbiz_writedb
+    ports:
+      - 5431:5432
+    volumes:
+      - powerbiz_writedata:/var/lib/postgresql/data
+    networks:
+      - powerbizNet
+
   powerbiz_readdb:
     image: postgres:11
     container_name: powerbiz_readdb
@@ -13,7 +29,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - powerbiz_pgdata:/var/lib/postgresql/data
+      - powerbiz_readdata:/var/lib/postgresql/data
     networks:
       - powerbizNet
 
@@ -25,6 +41,15 @@ services:
       - AXONSERVER_HOSTNAME=axonserver
     ports:
       - 8024:8024
+    networks:
+      - powerbizNet
+
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: powerbiz_rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
     networks:
       - powerbizNet
 
@@ -59,7 +84,8 @@ services:
       - powerbizNet
 
 volumes:
-  powerbiz_pgdata:
+  powerbiz_writedata:
+  powerbiz_readdata:
 
 networks:
   powerbizNet:
