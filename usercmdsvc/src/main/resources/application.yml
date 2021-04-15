@@ -23,11 +23,11 @@ spring:
     database-platform: "org.hibernate.dialect.PostgreSQLDialect"
     generate-ddl: true
   rabbitmq:
-    host: "${RABBITMQ_HOST:localhost}"
+    host: "${RABBITMQ_HOSTNAME:localhost}"
     port: 5672
     virtual-host: /
-    username: guest
-    password: guest
+    username: "${RABBITMQ_USERNAME:guest}"
+    password: "${RABBITMQ_PASSWORD:guest}"
   cloud:
     stream:
       producer:
