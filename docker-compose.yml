@@ -1,35 +1,31 @@
 version: '3.1'
 
 services:
-  powerbiz_writedb:
+  powerbizwdb:
     image: postgres:11
-    container_name: powerbiz_writedb
-    hostname: powerbiz_writedb
+    container_name: powerbizwdb
+    hostname: powerbizwdb
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
       - POSTGRES_DB=powerbiz_writedb
-      - POSTGRES_HOSTNAME=powerbiz_writedb
-    ports:
-      - 5431:5432
+      - POSTGRES_HOST=powerbizwdb
     volumes:
-      - powerbiz_writedata:/var/lib/postgresql/data
+      - powerbizwdb:/var/lib/postgresql/data
     networks:
       - powerbizNet
 
-  powerbiz_readdb:
+  powerbizrdb:
     image: postgres:11
-    container_name: powerbiz_readdb
-    hostname: powerbiz_readdb
+    container_name: powerbizrdb
+    hostname: powerbizrdb
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
-      - POSTGRES_DB=powerbiz
-      - POSTGRES_HOSTNAME=powerbiz_readdb
-    ports:
-      - 5432:5432
+      - POSTGRES_DB=powerbiz_readdb
+      - POSTGRES_HOST=powerbizrdb
     volumes:
-      - powerbiz_readdata:/var/lib/postgresql/data
+      - powerbizrdb:/var/lib/postgresql/data
     networks:
       - powerbizNet
 
@@ -63,11 +59,20 @@ services:
       dockerfile: ./usercmdsvc/Dockerfile
     container_name: user-command-svc
     environment:
-      - AXONSERVER_HOST=axonserver
+      - AXONSERVER_HOSTNAME=axonserver
+      - POSTGRES_HOST=powerbizwdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Default123
+      - POSTGRES_DB=powerbiz_writedb
+      - RABBITMQ_HOSTNAME=powerbiz_rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
     ports:
       - 8081:8081
     depends_on:
       - axonserver
+      - powerbizwdb
+      - rabbitmq
     networks:
       - powerbizNet
 
@@ -77,19 +82,26 @@ services:
       dockerfile: ./userquerysvc/Dockerfile
     container_name: user-query-svc
     environment:
-      - AXONSERVER_HOST=axonserver
-      - POSTGRES_HOSTNAME=powerbiz_readdb
+      - AXONSERVER_HOSTNAME=axonserver
+      - POSTGRES_HOST=powerbizrdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Default123
+      - POSTGRES_DB=powerbiz_readdb
+      - RABBITMQ_HOSTNAME=powerbiz_rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
     ports:
       - 8082:8082
     depends_on:
       - axonserver
-      - powerbiz_readdb
+      - powerbizrdb
+      - rabbitmq
     networks:
       - powerbizNet
 
 volumes:
-  powerbiz_writedata:
-  powerbiz_readdata:
+  powerbizwdb:
+  powerbizrdb:
 
 networks:
   powerbizNet:
