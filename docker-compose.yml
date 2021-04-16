@@ -1,19 +1,31 @@
 version: '3.1'
 
 services:
-  powerbiz_readdb:
+  powerbizwdb:
     image: postgres:11
-    container_name: powerbiz_readdb
-    hostname: powerbiz_readdb
+    container_name: powerbizwdb
+    hostname: powerbizwdb
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
-      - POSTGRES_DB=powerbiz
-      - POSTGRES_HOSTNAME=powerbiz_readdb
-    ports:
-      - 5432:5432
+      - POSTGRES_DB=powerbiz_writedb
+      - POSTGRES_HOST=powerbizwdb
     volumes:
-      - powerbiz_pgdata:/var/lib/postgresql/data
+      - powerbizwdb:/var/lib/postgresql/data
+    networks:
+      - powerbizNet
+
+  powerbizrdb:
+    image: postgres:11
+    container_name: powerbizrdb
+    hostname: powerbizrdb
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Default123
+      - POSTGRES_DB=powerbiz_readdb
+      - POSTGRES_HOST=powerbizrdb
+    volumes:
+      - powerbizrdb:/var/lib/postgresql/data
     networks:
       - powerbizNet
 
@@ -28,17 +40,39 @@ services:
     networks:
       - powerbizNet
 
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: powerbiz_rabbitmq
+    environment:
+      - RABBITMQ_HOSTNAME=powerbiz_rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - powerbizNet
+
   usercmdsvc:
     build:
       context: .
       dockerfile: ./usercmdsvc/Dockerfile
     container_name: user-command-svc
     environment:
-      - AXONSERVER_HOST=axonserver
+      - AXONSERVER_HOSTNAME=axonserver
+      - POSTGRES_HOST=powerbizwdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Default123
+      - POSTGRES_DB=powerbiz_writedb
+      - RABBITMQ_HOSTNAME=powerbiz_rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
     ports:
       - 8081:8081
     depends_on:
       - axonserver
+      - powerbizwdb
+      - rabbitmq
     networks:
       - powerbizNet
 
@@ -48,18 +82,26 @@ services:
       dockerfile: ./userquerysvc/Dockerfile
     container_name: user-query-svc
     environment:
-      - AXONSERVER_HOST=axonserver
-      - POSTGRES_HOSTNAME=powerbiz_readdb
+      - AXONSERVER_HOSTNAME=axonserver
+      - POSTGRES_HOST=powerbizrdb
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=Default123
+      - POSTGRES_DB=powerbiz_readdb
+      - RABBITMQ_HOSTNAME=powerbiz_rabbitmq
+      - RABBITMQ_USERNAME=guest
+      - RABBITMQ_PASSWORD=guest
     ports:
       - 8082:8082
     depends_on:
       - axonserver
-      - powerbiz_readdb
+      - powerbizrdb
+      - rabbitmq
     networks:
       - powerbizNet
 
 volumes:
-  powerbiz_pgdata:
+  powerbizwdb:
+  powerbizrdb:
 
 networks:
   powerbizNet:
