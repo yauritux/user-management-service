@@ -3,14 +3,12 @@ package com.power.usercmdsvc.aggregates;
 import com.power.usercmdsvc.commands.RegisterUserCommand;
 import com.power.usercmdsvc.services.UserStreamingService;
 import com.power.usercore.events.UserRegisteredEvent;
-import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.CommandHandler;
 import org.axonframework.eventsourcing.EventSourcingHandler;
 import org.axonframework.modelling.command.AggregateIdentifier;
 import org.axonframework.modelling.command.AggregateLifecycle;
 import org.axonframework.spring.stereotype.Aggregate;
 
-@Slf4j
 @Aggregate
 public class UserAggregate {
     @AggregateIdentifier
@@ -37,8 +35,6 @@ public class UserAggregate {
 
     @EventSourcingHandler
     public void on(UserRegisteredEvent event) {
-        log.debug("eventsourcinghandler-UserRegisteredEvent is started...");
-        log.debug("firstName={}", event.getFirstName());
         this.id = event.getId();
         this.firstName = event.getFirstName();
         this.lastName = event.getLastName();

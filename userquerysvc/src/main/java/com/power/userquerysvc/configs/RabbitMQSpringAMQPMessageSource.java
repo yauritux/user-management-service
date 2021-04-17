@@ -28,7 +28,6 @@ public class RabbitMQSpringAMQPMessageSource extends SpringAMQPMessageSource imp
     @Override
     public void onMessage(final Message message, final Channel channel) {
         String messageBody = new String(message.getBody());
-        System.out.println("Message Body = " + messageBody);
         super.onMessage(message, channel);
         Gson g = new Gson();
         try {

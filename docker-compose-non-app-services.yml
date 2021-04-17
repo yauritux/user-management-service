@@ -44,15 +44,6 @@ services:
     networks:
       - powerbizNet
 
-  axonserver:
-    image: axoniq/axonserver
-    container_name: powerbiz_axon
-    ports:
-      - 8024:8024
-      - 8124:8124
-    networks:
-      - powerbizNet
-
 volumes:
   powerbiz_writedata:
   powerbiz_readdata:
