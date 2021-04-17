@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
-@ProcessingGroup("userEvents")
+@ProcessingGroup("userEvents.topic.userEvents")
 public class UserEventHandlerImpl implements UserEventHandler {
 
     private final UserRepository userRepository;
@@ -19,7 +19,7 @@ public class UserEventHandlerImpl implements UserEventHandler {
         this.userRepository = userRepository;
     }
 
-    @EventHandler
+    @EventHandler(payloadType = UserRegisteredEvent.class)
     @Override
     public void on(UserRegisteredEvent event) {
         log.debug("processing UserRegisteredEvent={}", event);

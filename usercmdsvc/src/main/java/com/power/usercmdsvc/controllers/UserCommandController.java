@@ -2,6 +2,7 @@ package com.power.usercmdsvc.controllers;
 
 import com.power.usercmdsvc.commands.RegisterUserCommand;
 import com.power.usercmdsvc.dto.RegisterUserResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserCommandController {
@@ -25,7 +27,11 @@ public class UserCommandController {
     @PostMapping
     public ResponseEntity<RegisterUserResponse> registerUser(@RequestBody RegisterUserCommand command) {
         var id = UUID.randomUUID().toString();
-        command.setId(id);
+        if(command.getId() == null) {
+            log.debug("ID is not set, generating a new random uuid...");
+            command.setId(id);
+        }
+        log.debug("ID=" + command.getId());
         try {
             commandGateway.send(command);
             return new ResponseEntity<>(new RegisterUserResponse(id, "Successfully registered new user"), HttpStatus.CREATED);

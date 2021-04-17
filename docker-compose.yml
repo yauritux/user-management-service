@@ -43,8 +43,9 @@ services:
   rabbitmq:
     image: rabbitmq:3
     container_name: powerbiz_rabbitmq
+    hostname: rabbitmq
     environment:
-      - RABBITMQ_HOSTNAME=powerbiz_rabbitmq
+      - RABBITMQ_HOSTNAME=rabbitmq
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
     ports:
@@ -63,8 +64,9 @@ services:
       - POSTGRES_HOST=powerbizwdb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
+      - POSTGRES_PORT=5432
       - POSTGRES_DB=powerbiz_writedb
-      - RABBITMQ_HOSTNAME=powerbiz_rabbitmq
+      - RABBITMQ_HOSTNAME=rabbitmq
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
     ports:
@@ -87,7 +89,7 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
       - POSTGRES_DB=powerbiz_readdb
-      - RABBITMQ_HOSTNAME=powerbiz_rabbitmq
+      - RABBITMQ_HOSTNAME=rabbitmq
       - RABBITMQ_USERNAME=guest
       - RABBITMQ_PASSWORD=guest
     ports:
