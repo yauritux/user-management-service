@@ -29,17 +29,6 @@ services:
     networks:
       - powerbizNet
 
-  axonserver:
-    image: axoniq/axonserver
-    container_name: powerbiz_axon
-    hostname: axonserver
-    environment:
-      - AXONSERVER_HOSTNAME=axonserver
-    ports:
-      - 8024:8024
-    networks:
-      - powerbizNet
-
   rabbitmq:
     image: rabbitmq:3
     container_name: powerbiz_rabbitmq
@@ -60,7 +49,6 @@ services:
       dockerfile: ./usercmdsvc/Dockerfile
     container_name: user-command-svc
     environment:
-      - AXONSERVER_HOSTNAME=axonserver
       - POSTGRES_HOST=powerbizwdb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
@@ -72,7 +60,6 @@ services:
     ports:
       - 8081:8081
     depends_on:
-      - axonserver
       - powerbizwdb
       - rabbitmq
     networks:
@@ -84,7 +71,6 @@ services:
       dockerfile: ./userquerysvc/Dockerfile
     container_name: user-query-svc
     environment:
-      - AXONSERVER_HOSTNAME=axonserver
       - POSTGRES_HOST=powerbizrdb
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
@@ -95,7 +81,6 @@ services:
     ports:
       - 8082:8082
     depends_on:
-      - axonserver
       - powerbizrdb
       - rabbitmq
     networks:
