@@ -1,17 +1,23 @@
 package com.power.userquerysvc.configs;
 
+import com.google.gson.Gson;
+import com.power.usercore.events.BaseEvent;
+import com.power.userquerysvc.handlers.UserEventHandler;
 import com.rabbitmq.client.Channel;
-import lombok.extern.slf4j.Slf4j;
 import org.axonframework.extensions.amqp.eventhandling.AMQPMessageConverter;
 import org.axonframework.extensions.amqp.eventhandling.spring.SpringAMQPMessageSource;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 @Component("rabbitMQSpringAMQPMessageSource")
-@Slf4j
-public class RabbitMQSpringAMQPMessageSource extends SpringAMQPMessageSource {
+public class RabbitMQSpringAMQPMessageSource extends SpringAMQPMessageSource implements ApplicationContextAware {
+
+    private ApplicationContext applicationContext;
 
     @Autowired
     public RabbitMQSpringAMQPMessageSource(final AMQPMessageConverter messageConverter) {
@@ -21,8 +27,23 @@ public class RabbitMQSpringAMQPMessageSource extends SpringAMQPMessageSource {
     @RabbitListener(queues = "userEvents.topic.userEvents")
     @Override
     public void onMessage(final Message message, final Channel channel) {
-        log.debug("received message: message={}, channel={}", message, channel);
-        System.out.println("Received message = " + message.toString());
+        String messageBody = new String(message.getBody());
+        System.out.println("Message Body = " + messageBody);
         super.onMessage(message, channel);
+        Gson g = new Gson();
+        try {
+            var payload = g.fromJson(messageBody, BaseEvent.class);
+            var eventHandler = (UserEventHandler) Class.forName(
+                    UserEventHandler.EVENT_HANDLER_PACKAGE + "." + payload.getEventHandler()
+            ).getConstructor(String.class, ApplicationContext.class).newInstance(messageBody, applicationContext);
+            eventHandler.handle();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }

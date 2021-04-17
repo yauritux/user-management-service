@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserRegisteredEvent {
+public class UserRegisteredEvent extends BaseEvent {
     private String id;
     private String firstName;
     private String lastName;
