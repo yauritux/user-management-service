@@ -14,6 +14,7 @@ public class BaseEvent {
     public BaseEvent() {
         this.eventType = this.getClass().getName();
         this.eventHandler = this.getClass().getSimpleName() + "Handler";
+        this.timestamp = new Date();
     }
 
     @Override

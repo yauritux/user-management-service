@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class RegisterUserResponse extends BaseResponse {
-    private String id;
+    private String username;
 
     public RegisterUserResponse(String id, String message) {
         super(message);
-        this.id = id;
+        this.username = id;
     }
 }

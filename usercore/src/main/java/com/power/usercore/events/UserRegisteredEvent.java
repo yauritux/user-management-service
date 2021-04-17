@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserRegisteredEvent extends BaseEvent {
     private String id;
+    private String username;
     private String firstName;
     private String lastName;
-    private String username;
     private String email;
 }

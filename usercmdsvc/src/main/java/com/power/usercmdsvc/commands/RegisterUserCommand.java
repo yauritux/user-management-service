@@ -12,9 +12,8 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @AllArgsConstructor
 public class RegisterUserCommand {
     @TargetAggregateIdentifier
-    private String id;
+    private String username;
     private String firstName;
     private String lastName;
-    private String username;
     private String email;
 }
