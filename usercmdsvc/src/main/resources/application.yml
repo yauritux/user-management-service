@@ -62,6 +62,10 @@ spring:
         definition: userRegistered;userUpdated
 
 axon:
+  eventhandling:
+    processors:
+      emailEntity:
+        mode: subscribing
   serializer:
     general: xstream
     messages: jackson
