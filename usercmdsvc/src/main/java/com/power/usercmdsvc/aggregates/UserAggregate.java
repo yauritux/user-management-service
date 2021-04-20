@@ -28,7 +28,7 @@ public class UserAggregate {
 
     @CommandHandler
     @CreationPolicy(AggregateCreationPolicy.CREATE_IF_MISSING)
-    public void handle(RegisterUserCommand command, UserStreamingService userStreamingService) {
+    public void handle(RegisterUserCommand command) {
         if(this.username != null && this.username.equalsIgnoreCase(command.getUsername())) {
             throw new CommandExecutionException(
                     String.format("username %s has been taken, please choose another username!",
@@ -42,7 +42,6 @@ public class UserAggregate {
                 .email(command.getEmail())
                 .build();
         AggregateLifecycle.apply(event);
-        userStreamingService.publishUserRegisteredEvent(event);
     }
 
     @CommandHandler
