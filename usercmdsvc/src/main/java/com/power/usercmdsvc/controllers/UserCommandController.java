@@ -38,8 +38,10 @@ public class UserCommandController {
         });
     }
 
-    @PutMapping
-    public CompletableFuture<ResponseEntity<UpdateUserResponse>> updateUser(@RequestBody UpdateUserCommand command) {
+    @PutMapping("/{username}")
+    public CompletableFuture<ResponseEntity<UpdateUserResponse>> updateUser(
+            @PathVariable String username, @RequestBody UpdateUserCommand command) {
+        command.setUsername(username);
         return commandGateway.send(command).thenApply(it -> {
             return new ResponseEntity<>(
                     new UpdateUserResponse(
