@@ -24,7 +24,7 @@ public class RabbitMQSpringAMQPMessageSource extends SpringAMQPMessageSource imp
         super(messageConverter);
     }
 
-    @RabbitListener(queues = "userEvents")
+    @RabbitListener(queues = {"userEvents", "userUpdatedEvents"})
     @Override
     public void onMessage(final Message message, final Channel channel) {
         String messageBody = new String(message.getBody());

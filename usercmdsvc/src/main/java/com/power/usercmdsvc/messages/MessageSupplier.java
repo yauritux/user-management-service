@@ -1,6 +1,7 @@
 package com.power.usercmdsvc.messages;
 
 import com.power.usercore.events.UserRegisteredEvent;
+import com.power.usercore.events.UserUpdatedEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -17,21 +18,42 @@ public class MessageSupplier {
         this.produce = produce;
     }
 
-    @Bean
+    @Bean("userRegistered")
     public Supplier<UserRegisteredEvent> userRegistered() {
         return () -> {
             if(produce) {
-                return getPayload();
+                return getUserRegistrationPayload();
             }
             return null;
         };
     }
 
-    private UserRegisteredEvent getPayload() {
+    @Bean("userUpdated")
+    public Supplier<UserUpdatedEvent> userUpdated() {
+        return () -> {
+            if(produce) {
+                return getUserUpdatePayload();
+            }
+            return null;
+        };
+    }
+
+    private UserRegisteredEvent getUserRegistrationPayload() {
         return UserRegisteredEvent
                 .builder()
                 .id(UUID.randomUUID().toString())
                 .firstName("Yauri")
+                .lastName("Attamimi")
+                .username("yauritux")
+                .email("yauritux@gmail.com")
+                .build();
+    }
+
+    private UserUpdatedEvent getUserUpdatePayload() {
+        return UserUpdatedEvent
+                .builder()
+                .id(UUID.randomUUID().toString())
+                .firstName("M Yauri M")
                 .lastName("Attamimi")
                 .username("yauritux")
                 .email("yauritux@gmail.com")

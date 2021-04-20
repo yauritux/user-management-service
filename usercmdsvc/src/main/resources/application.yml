@@ -41,6 +41,11 @@ spring:
           group: userEvents
           producer:
             required-groups: userEvents
+        userUpdated-out-0:
+          destination: userEvents.topic
+          group: userUpdatedEvents
+          producer:
+            required-groups: userUpdatedEvents
       rabbit:
         bindings:
           userRegistered-out-0:
@@ -48,6 +53,13 @@ spring:
               queue-name-group-only: true
               binding-routing-key: userRegisteredEvent
               routing-key-expression: '''userRegisteredEvent'''
+          userUpdated-out-0:
+            producer:
+              queue-name-group-only: true
+              binding-routing-key: userUpdatedEvent
+              routing-key-expression: '''userUpdatedEvent'''
+      function:
+        definition: userRegistered;userUpdated
 
 axon:
   serializer:
