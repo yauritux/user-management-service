@@ -35,5 +35,3 @@ axon:
     general: xstream
     messages: jackson
     events: jackson
-  axonserver:
-    servers: "${AXONSERVER_HOSTNAME:localhost}:8124"

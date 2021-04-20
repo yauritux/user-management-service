@@ -38,12 +38,18 @@ spring:
       bindings:
         userRegistered-out-0:
           destination: userEvents.topic
+          group: userEvents
           producer:
             required-groups: userEvents
+      rabbit:
+        bindings:
+          userRegistered-out-0:
+            producer:
+              queue-name-group-only: true
+              binding-routing-key: userRegisteredEvent
+              routing-key-expression: '''userRegisteredEvent'''
 
 axon:
-  axonserver:
-    servers: "${AXONSERVER_HOSTNAME:localhost}:8124"
   serializer:
     general: xstream
     messages: jackson
