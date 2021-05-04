@@ -19,11 +19,10 @@ public class UserUpdatedEventHandler implements UserEventHandler {
     public void handle() {
         var userRepository = (UserRepository) applicationContext.getBean("userRepository");
         var userView = userRepository.findByUsername(event.getUsername());
-        if(userView.isPresent()) {
-            var updatedUser = userView.get();
-            updatedUser.setFirstName(event.getFirstName());
-            updatedUser.setLastName(event.getLastName());
-            userRepository.save(updatedUser);
-        }
+        userView.ifPresent(user -> {
+            user.setFirstName(event.getFirstName());
+            user.setLastName(event.getLastName());
+            userRepository.save(user);
+        });
     }
 }
