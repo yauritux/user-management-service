@@ -25,6 +25,7 @@ public class UserAggregate {
     private String firstName;
     private String lastName;
     private String email;
+    private String role;
 
     @CommandHandler
     @CreationPolicy(AggregateCreationPolicy.CREATE_IF_MISSING)
@@ -37,9 +38,11 @@ public class UserAggregate {
         var event = UserRegisteredEvent.builder()
                 .id(UUID.randomUUID().toString())
                 .username(command.getUsername())
+                .password(command.getPassword())
                 .firstName(command.getFirstName())
                 .lastName(command.getLastName())
                 .email(command.getEmail())
+                .role(command.getRole())
                 .build();
         AggregateLifecycle.apply(event);
     }
@@ -73,5 +76,6 @@ public class UserAggregate {
         this.firstName = event.getFirstName();
         this.lastName = event.getLastName();
         this.email = event.getEmail();
+        this.role = event.getRole();
     }
 }
