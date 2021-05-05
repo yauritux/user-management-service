@@ -24,28 +24,16 @@ public class UserCommandController {
     }
 
     @PostMapping
-    public ResponseEntity<RegisterUserResponse> registerUser(@RequestBody RegisterUserCommand command) {
-//    public CompletableFuture<ResponseEntity<RegisterUserResponse>> registerUser(@RequestBody RegisterUserCommand command) {
-        try {
-            commandGateway.send(command);
+    public CompletableFuture<ResponseEntity<RegisterUserResponse>> registerUser(@RequestBody RegisterUserCommand command) {
+        return commandGateway.send(command).thenApply(it -> {
             return new ResponseEntity<>(
                     new RegisterUserResponse(
-                            command.getUsername(), "User successfully registered"
-                    ), HttpStatus.CREATED
+                            command.getUsername(), "User successfully registered"), HttpStatus.CREATED
             );
-        } catch (Exception e) {
+        }).exceptionally(e -> {
             var message = "Failed to register user. Error=" + e.getLocalizedMessage();
             return new ResponseEntity<>(new RegisterUserResponse(command.getUsername(), message), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-//        return commandGateway.send(command).thenApply(it -> {
-//            return new ResponseEntity<>(
-//                    new RegisterUserResponse(
-//                            command.getUsername(), "User successfully registered"), HttpStatus.CREATED
-//            );
-//        }).exceptionally(e -> {
-//            var message = "Failed to register user. Error=" + e.getLocalizedMessage();
-//            return new ResponseEntity<>(new RegisterUserResponse(command.getUsername(), message), HttpStatus.INTERNAL_SERVER_ERROR);
-//        });
+        });
     }
 
     @PutMapping("/{username}")
