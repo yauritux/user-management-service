@@ -70,3 +70,7 @@ axon:
     general: xstream
     messages: jackson
     events: jackson
+
+opa:
+  auth:
+    url: "http://localhost:8181/v1/data/authz/allow"

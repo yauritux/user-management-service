@@ -1,0 +1,22 @@
+[
+  {
+    "resource": "/api/v1/users",
+    "method": "POST",
+    "role": "admin"
+  },
+  {
+    "resource": "/api/v1/users",
+    "method": "GET",
+    "role": "admin"
+  },
+  {
+    "resource": "/api/v1/users",
+    "method": "PUT",
+    "role": "admin"
+  },
+  {
+    "resource": "/api/v1/users",
+    "method": "PUT",
+    "role": "user"
+  }
+]
