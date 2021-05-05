@@ -3,6 +3,7 @@ package com.power.userquerysvc.configs;
 import com.google.gson.Gson;
 import com.power.usercore.events.BaseEvent;
 import com.power.userquerysvc.handlers.UserEventHandler;
+import com.power.userquerysvc.services.UserADService;
 import com.rabbitmq.client.Channel;
 import org.axonframework.extensions.amqp.eventhandling.AMQPMessageConverter;
 import org.axonframework.extensions.amqp.eventhandling.spring.SpringAMQPMessageSource;
@@ -18,10 +19,12 @@ import org.springframework.stereotype.Component;
 public class RabbitMQSpringAMQPMessageSource extends SpringAMQPMessageSource implements ApplicationContextAware {
 
     private ApplicationContext applicationContext;
+    private final UserADService userADService;
 
     @Autowired
-    public RabbitMQSpringAMQPMessageSource(final AMQPMessageConverter messageConverter) {
+    public RabbitMQSpringAMQPMessageSource(final AMQPMessageConverter messageConverter, UserADService userADService) {
         super(messageConverter);
+        this.userADService = userADService;
     }
 
     @RabbitListener(queues = {"userEvents", "userUpdatedEvents"})
@@ -34,7 +37,8 @@ public class RabbitMQSpringAMQPMessageSource extends SpringAMQPMessageSource imp
             var payload = g.fromJson(messageBody, BaseEvent.class);
             var eventHandler = (UserEventHandler) Class.forName(
                     UserEventHandler.EVENT_HANDLER_PACKAGE + "." + payload.getEventHandler()
-            ).getConstructor(String.class, ApplicationContext.class).newInstance(messageBody, applicationContext);
+            ).getConstructor(String.class, ApplicationContext.class, UserADService.class)
+                    .newInstance(messageBody, applicationContext, userADService);
             eventHandler.handle();
         } catch (Exception e) {
             e.printStackTrace();
