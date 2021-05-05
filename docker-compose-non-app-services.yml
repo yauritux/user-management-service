@@ -44,6 +44,18 @@ services:
     networks:
       - powerbizNet
 
+  opa_engine:
+    image: openpolicyagent/opa:edge-rootless
+    container_name: opa_engine
+    ports:
+      - 8181:8181
+    command:
+      - "run"
+      - "--server"
+      - "--log-level=debug"
+    networks:
+      - powerbizNet
+
 volumes:
   powerbiz_writedata:
   powerbiz_readdata:
