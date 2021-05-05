@@ -27,8 +27,8 @@ spring:
       client:
         registration:
           azure:
-            client-id: 5a57e210-1e8c-41b6-a6a8-64b23a5d17ca
-            client-secret: e2ID__PrNWjm7FY3a_F8Fu6s~ihVsv~3.V
+            client-id: 5a57e299-1e8c-41b6-a6a8-64b23a5d1
+            client-secret: e2CE__PrNWjm7FY3a_F8Fu6s
 
 axon:
   amqp:
@@ -45,4 +45,4 @@ axon:
 
 azure:
   activedirectory:
-    tenant-id: 6a92eb64-8e1b-44eb-b240-3f4485c188b6
+    tenant-id: 67432eb64-8e1b-44eb-b240-3f4485c7434
