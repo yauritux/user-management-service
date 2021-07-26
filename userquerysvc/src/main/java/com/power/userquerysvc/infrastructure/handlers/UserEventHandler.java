@@ -1,4 +1,4 @@
-package com.power.userquerysvc.handlers;
+package com.power.userquerysvc.infrastructure.handlers;
 
 public interface UserEventHandler {
     String EVENT_HANDLER_PACKAGE = UserEventHandler.class.getPackageName();

@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.configs;
+package com.power.usercmdsvc.infrastructure.config;
 
 import com.power.usercmdsvc.infrastructure.commands.interceptors.UserRegistrationDispatchInterceptor;
 import org.axonframework.commandhandling.CommandBus;

@@ -1,4 +1,4 @@
-package com.power.userquerysvc.projections;
+package com.power.userquerysvc.domain.projections;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,6 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * In terms of DDD, this will be our Value Object for Default User View.
+ * As from the CQRS-ES perspective, this is our default projection to represent user data.
+ * @author Yauri Attamimi
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

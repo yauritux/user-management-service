@@ -1,9 +1,9 @@
-package com.power.userquerysvc.handlers;
+package com.power.userquerysvc.infrastructure.handlers;
 
 import com.google.gson.Gson;
 import com.power.usercore.events.UserRegisteredEvent;
-import com.power.userquerysvc.projections.DefaultUserView;
-import com.power.userquerysvc.repositories.UserRepository;
+import com.power.userquerysvc.domain.projections.DefaultUserView;
+import com.power.userquerysvc.domain.repositories.UserRepository;
 import org.springframework.context.ApplicationContext;
 
 public class UserRegisteredEventHandler implements UserEventHandler {
