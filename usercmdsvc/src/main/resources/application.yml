@@ -1,5 +1,5 @@
 server:
-  port: 8081
+  port: "${USER_CMD_PORT:8081}"
   error:
     include-message: always
 
@@ -14,8 +14,8 @@ spring:
     driver-class-name: org.postgresql.Driver
     platform: "postgres"
     url: "jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5431}/powerbiz_writedb"
-    username: postgres
-    password: Default123
+    username: "${POSTGRES_USERNAME:postgres}"
+    password: "${POSTGRES_PASSWORD:Default123}"
   jpa:
     hibernate:
       ddl-auto: update
@@ -24,7 +24,7 @@ spring:
     generate-ddl: true
   rabbitmq:
     host: "${RABBITMQ_HOSTNAME:localhost}"
-    port: 5672
+    port: "${RABBITMQ_PORT:5672}"
     virtual-host: /
     username: "${RABBITMQ_USERNAME:guest}"
     password: "${RABBITMQ_PASSWORD:guest}"

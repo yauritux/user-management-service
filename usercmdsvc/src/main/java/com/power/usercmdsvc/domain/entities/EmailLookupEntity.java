@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.entities;
+package com.power.usercmdsvc.domain.entities;
 
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.services;
+package com.power.usercmdsvc.port.output.service;
 
 import com.power.usercore.events.UserRegisteredEvent;
 import com.power.usercore.events.UserUpdatedEvent;

@@ -1,6 +1,6 @@
-package com.power.usercmdsvc.repositories;
+package com.power.usercmdsvc.domain.repositories;
 
-import com.power.usercmdsvc.entities.EmailLookupEntity;
+import com.power.usercmdsvc.domain.entities.EmailLookupEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

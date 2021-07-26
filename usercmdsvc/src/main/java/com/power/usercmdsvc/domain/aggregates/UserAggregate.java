@@ -1,8 +1,8 @@
-package com.power.usercmdsvc.aggregates;
+package com.power.usercmdsvc.domain.aggregates;
 
 import com.power.usercmdsvc.commands.RegisterUserCommand;
 import com.power.usercmdsvc.commands.UpdateUserCommand;
-import com.power.usercmdsvc.services.UserStreamingService;
+import com.power.usercmdsvc.port.output.service.UserStreamingService;
 import com.power.usercore.events.UserRegisteredEvent;
 import com.power.usercore.events.UserUpdatedEvent;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,7 @@ public class UserAggregate {
 
     @CommandHandler
     @CreationPolicy(AggregateCreationPolicy.CREATE_IF_MISSING)
-    public void handle(RegisterUserCommand command) {
+    public void doHandle(RegisterUserCommand command) {
         if(this.username != null && this.username.equalsIgnoreCase(command.getUsername())) {
             throw new CommandExecutionException(
                     String.format("username %s has been taken, please choose another username!",

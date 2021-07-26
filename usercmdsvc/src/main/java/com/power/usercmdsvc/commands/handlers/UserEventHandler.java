@@ -1,8 +1,8 @@
 package com.power.usercmdsvc.commands.handlers;
 
-import com.power.usercmdsvc.entities.EmailLookupEntity;
-import com.power.usercmdsvc.repositories.EmailLookupRepository;
-import com.power.usercmdsvc.services.UserStreamingService;
+import com.power.usercmdsvc.domain.entities.EmailLookupEntity;
+import com.power.usercmdsvc.domain.repositories.EmailLookupRepository;
+import com.power.usercmdsvc.port.output.service.UserStreamingService;
 import com.power.usercore.events.UserRegisteredEvent;
 import org.axonframework.config.ProcessingGroup;
 import org.axonframework.eventhandling.EventHandler;
