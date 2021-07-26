@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.commands.handlers;
+package com.power.usercmdsvc.infrastructure.commands.handlers;
 
 import com.power.usercmdsvc.domain.entities.EmailLookupEntity;
 import com.power.usercmdsvc.domain.repositories.EmailLookupRepository;

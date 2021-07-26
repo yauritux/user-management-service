@@ -1,6 +1,6 @@
 package com.power.usercmdsvc.port.input.adapter;
 
-import com.power.usercmdsvc.commands.RegisterUserCommand;
+import com.power.usercmdsvc.infrastructure.commands.RegisterUserCommand;
 import com.power.usercmdsvc.port.input.dto.RegisterUserRequest;
 import com.power.usercmdsvc.port.input.service.UserCommandService;
 import lombok.extern.slf4j.Slf4j;

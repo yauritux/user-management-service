@@ -1,6 +1,6 @@
 package com.power.usercmdsvc.configs;
 
-import com.power.usercmdsvc.commands.interceptors.UserRegistrationDispatchInterceptor;
+import com.power.usercmdsvc.infrastructure.commands.interceptors.UserRegistrationDispatchInterceptor;
 import org.axonframework.commandhandling.CommandBus;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.axonframework.commandhandling.gateway.DefaultCommandGateway;

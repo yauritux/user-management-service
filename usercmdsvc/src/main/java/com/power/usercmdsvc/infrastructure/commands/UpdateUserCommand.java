@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.commands;
+package com.power.usercmdsvc.infrastructure.commands;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,7 +10,7 @@ import org.axonframework.modelling.command.TargetAggregateIdentifier;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RegisterUserCommand {
+public class UpdateUserCommand {
     @TargetAggregateIdentifier
     private String username;
     private String firstName;
