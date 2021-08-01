@@ -1,4 +1,4 @@
-package com.power.userquerysvc.infrastructure.handlers;
+package com.power.userquerysvc.infrastructure.api.message.handlers;
 
 import com.google.gson.Gson;
 import com.power.usercore.events.UserUpdatedEvent;

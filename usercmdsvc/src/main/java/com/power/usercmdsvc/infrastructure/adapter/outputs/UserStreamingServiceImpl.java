@@ -1,6 +1,6 @@
-package com.power.usercmdsvc.port.output.adapter;
+package com.power.usercmdsvc.infrastructure.adapter.outputs;
 
-import com.power.usercmdsvc.port.output.service.UserStreamingService;
+import com.power.usercmdsvc.domain.service.port.output.UserStreamingService;
 import com.power.usercore.events.UserRegisteredEvent;
 import com.power.usercore.events.UserUpdatedEvent;
 import lombok.extern.slf4j.Slf4j;

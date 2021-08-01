@@ -1,8 +1,8 @@
-package com.power.usercmdsvc.port.input.adapter;
+package com.power.usercmdsvc.infrastructure.adapter.inputs;
 
+import com.power.usercmdsvc.domain.service.port.inputs.UserCommandService;
 import com.power.usercmdsvc.infrastructure.commands.RegisterUserCommand;
-import com.power.usercmdsvc.port.input.dto.RegisterUserRequest;
-import com.power.usercmdsvc.port.input.service.UserCommandService;
+import com.power.usercmdsvc.infrastructure.api.dto.requests.RegisterUserRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;
@@ -10,7 +10,7 @@ import reactor.core.publisher.Mono;
 
 @Slf4j
 @Service
-public class UserCommandServiceImpl implements UserCommandService<RegisterUserCommand> {
+public class UserCommandServiceImpl implements UserCommandService<RegisterUserCommand, RegisterUserRequest> {
 
     private final CommandGateway commandGateway;
 

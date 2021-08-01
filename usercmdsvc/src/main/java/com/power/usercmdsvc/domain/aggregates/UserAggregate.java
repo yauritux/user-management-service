@@ -2,7 +2,7 @@ package com.power.usercmdsvc.domain.aggregates;
 
 import com.power.usercmdsvc.infrastructure.commands.RegisterUserCommand;
 import com.power.usercmdsvc.infrastructure.commands.UpdateUserCommand;
-import com.power.usercmdsvc.port.output.service.UserStreamingService;
+import com.power.usercmdsvc.domain.service.port.output.UserStreamingService;
 import com.power.usercore.events.UserRegisteredEvent;
 import com.power.usercore.events.UserUpdatedEvent;
 import lombok.NoArgsConstructor;
