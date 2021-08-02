@@ -1,6 +1,6 @@
-package com.power.usercmdsvc.infrastructure.commands.interceptors;
+package com.power.usercmdsvc.infrastructure.api.commands.interceptors;
 
-import com.power.usercmdsvc.infrastructure.commands.RegisterUserCommand;
+import com.power.usercmdsvc.domain.commands.RegisterUserCommand;
 import com.power.usercmdsvc.domain.repositories.EmailLookupRepository;
 import org.axonframework.commandhandling.CommandExecutionException;
 import org.axonframework.commandhandling.CommandMessage;
@@ -31,6 +31,7 @@ public class UserRegistrationDispatchInterceptor implements MessageDispatchInter
         return (i, m) -> {
             if(RegisterUserCommand.class.equals(m.getPayloadType())) {
                 final RegisterUserCommand registerUserCommand = (RegisterUserCommand) m.getPayload();
+
                 if(emailLookupRepository.existsById(registerUserCommand.getEmail())) {
                     throw new CommandExecutionException(String.format("Account with email address %s already exists!",
                             registerUserCommand.getEmail()), null);

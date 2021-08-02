@@ -1,7 +1,7 @@
 package com.power.usercmdsvc.infrastructure.messages;
 
-import com.power.usercore.events.UserRegisteredEvent;
-import com.power.usercore.events.UserUpdatedEvent;
+import com.power.usercore.domain.events.UserRegisteredEvent;
+import com.power.usercore.domain.events.UserUpdatedEvent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;

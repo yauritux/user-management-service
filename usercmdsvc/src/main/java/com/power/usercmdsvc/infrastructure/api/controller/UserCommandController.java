@@ -1,7 +1,7 @@
 package com.power.usercmdsvc.infrastructure.api.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.power.usercmdsvc.infrastructure.api.dto.requests.RegisterUserRequest;
+import com.power.usercmdsvc.infrastructure.api.controllers.dto.requests.RegisterUserRequest;
 import com.power.usercmdsvc.domain.service.port.inputs.UserCommandService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

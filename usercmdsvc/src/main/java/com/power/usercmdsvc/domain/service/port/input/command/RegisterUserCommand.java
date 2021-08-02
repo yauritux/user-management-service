@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.infrastructure.commands;
+package com.power.usercmdsvc.domain.commands;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

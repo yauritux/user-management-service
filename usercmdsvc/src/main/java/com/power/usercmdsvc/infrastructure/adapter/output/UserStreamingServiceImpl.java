@@ -1,8 +1,8 @@
 package com.power.usercmdsvc.infrastructure.adapter.outputs;
 
 import com.power.usercmdsvc.domain.service.port.output.UserStreamingService;
-import com.power.usercore.events.UserRegisteredEvent;
-import com.power.usercore.events.UserUpdatedEvent;
+import com.power.usercore.domain.events.UserRegisteredEvent;
+import com.power.usercore.domain.events.UserUpdatedEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.stereotype.Service;

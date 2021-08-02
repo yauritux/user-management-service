@@ -1,10 +1,10 @@
 package com.power.usercmdsvc.domain.aggregates;
 
-import com.power.usercmdsvc.infrastructure.commands.RegisterUserCommand;
-import com.power.usercmdsvc.infrastructure.commands.UpdateUserCommand;
+import com.power.usercmdsvc.domain.commands.RegisterUserCommand;
+import com.power.usercmdsvc.domain.commands.UpdateUserCommand;
 import com.power.usercmdsvc.domain.service.port.output.UserStreamingService;
-import com.power.usercore.events.UserRegisteredEvent;
-import com.power.usercore.events.UserUpdatedEvent;
+import com.power.usercore.domain.events.UserRegisteredEvent;
+import com.power.usercore.domain.events.UserUpdatedEvent;
 import lombok.NoArgsConstructor;
 import org.axonframework.commandhandling.CommandExecutionException;
 import org.axonframework.commandhandling.CommandHandler;
