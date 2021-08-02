@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.infrastructure.api.controllers.dto.requests;
+package com.power.usercmdsvc.infrastructure.api.controller.dto.request;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;

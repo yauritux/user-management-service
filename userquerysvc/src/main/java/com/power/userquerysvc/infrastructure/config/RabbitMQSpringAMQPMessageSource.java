@@ -1,7 +1,7 @@
 package com.power.userquerysvc.infrastructure.config;
 
 import com.google.gson.Gson;
-import com.power.usercore.events.BaseEvent;
+import com.power.usercore.domain.events.BaseEvent;
 import com.power.userquerysvc.infrastructure.api.message.handlers.UserEventHandler;
 import com.rabbitmq.client.Channel;
 import org.axonframework.extensions.amqp.eventhandling.AMQPMessageConverter;

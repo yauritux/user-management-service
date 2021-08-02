@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.infrastructure.messages;
+package com.power.usercmdsvc.infrastructure.api.message;
 
 import com.power.usercore.domain.events.UserRegisteredEvent;
 import com.power.usercore.domain.events.UserUpdatedEvent;

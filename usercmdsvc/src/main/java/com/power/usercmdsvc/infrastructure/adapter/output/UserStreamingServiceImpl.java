@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.infrastructure.adapter.outputs;
+package com.power.usercmdsvc.infrastructure.adapter.output;
 
 import com.power.usercmdsvc.domain.service.port.output.UserStreamingService;
 import com.power.usercore.domain.events.UserRegisteredEvent;

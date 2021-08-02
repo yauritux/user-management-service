@@ -1,8 +1,8 @@
-package com.power.usercmdsvc.infrastructure.api.controllers;
+package com.power.usercmdsvc.infrastructure.api.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.power.usercmdsvc.infrastructure.api.controllers.dto.requests.RegisterUserRequest;
-import com.power.usercmdsvc.domain.service.port.inputs.UserCommandService;
+import com.power.usercmdsvc.infrastructure.api.controller.dto.request.RegisterUserRequest;
+import com.power.usercmdsvc.domain.service.port.input.UserCommandService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

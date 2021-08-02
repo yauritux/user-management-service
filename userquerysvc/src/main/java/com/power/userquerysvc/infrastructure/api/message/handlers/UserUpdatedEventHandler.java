@@ -1,7 +1,7 @@
 package com.power.userquerysvc.infrastructure.api.message.handlers;
 
 import com.google.gson.Gson;
-import com.power.usercore.events.UserUpdatedEvent;
+import com.power.usercore.domain.events.UserUpdatedEvent;
 import com.power.userquerysvc.domain.repositories.UserRepository;
 import org.springframework.context.ApplicationContext;
 

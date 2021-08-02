@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.domain.service.port.inputs;
+package com.power.usercmdsvc.domain.service.port.input;
 
 import reactor.core.publisher.Mono;
 

@@ -1,4 +1,4 @@
-package com.power.usercore.events;
+package com.power.usercore.domain.events;
 
 import lombok.Data;
 

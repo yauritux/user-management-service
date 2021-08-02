@@ -1,4 +1,4 @@
-package com.power.usercmdsvc.domain.commands;
+package com.power.usercmdsvc.domain.service.port.input.command;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,8 +1,8 @@
-package com.power.usercmdsvc.infrastructure.adapter.inputs;
+package com.power.usercmdsvc.infrastructure.adapter.input;
 
-import com.power.usercmdsvc.domain.service.port.inputs.UserCommandService;
-import com.power.usercmdsvc.domain.commands.RegisterUserCommand;
-import com.power.usercmdsvc.infrastructure.api.controllers.dto.requests.RegisterUserRequest;
+import com.power.usercmdsvc.domain.service.port.input.UserCommandService;
+import com.power.usercmdsvc.domain.service.port.input.command.RegisterUserCommand;
+import com.power.usercmdsvc.infrastructure.api.controller.dto.request.RegisterUserRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Service;

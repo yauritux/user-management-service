@@ -13,7 +13,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     platform: "postgres"
-    url: "jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/powerbiz_readdb"
+    url: "jdbc:postgresql://${POSTGRES_HOST:localhost}:5432/user_readdb"
     username: postgres
     password: Default123
   jpa:

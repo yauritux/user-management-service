@@ -1,7 +1,7 @@
-package com.power.usercmdsvc.domain.aggregates;
+package com.power.usercmdsvc.domain.aggregate;
 
-import com.power.usercmdsvc.domain.commands.RegisterUserCommand;
-import com.power.usercmdsvc.domain.commands.UpdateUserCommand;
+import com.power.usercmdsvc.domain.service.port.input.command.RegisterUserCommand;
+import com.power.usercmdsvc.domain.service.port.input.command.UpdateUserCommand;
 import com.power.usercmdsvc.domain.service.port.output.UserStreamingService;
 import com.power.usercore.domain.events.UserRegisteredEvent;
 import com.power.usercore.domain.events.UserUpdatedEvent;

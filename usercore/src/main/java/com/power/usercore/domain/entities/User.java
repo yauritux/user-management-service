@@ -1,4 +1,4 @@
-package com.power.usercore.entities;
+package com.power.usercore.domain.entities;
 
 public class User {
     private String firstName;

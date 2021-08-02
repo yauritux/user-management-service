@@ -13,7 +13,7 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     platform: "postgres"
-    url: "jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5431}/powerbiz_writedb"
+    url: "jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5431}/user_writedb"
     username: "${POSTGRES_USERNAME:postgres}"
     password: "${POSTGRES_PASSWORD:Default123}"
   jpa:

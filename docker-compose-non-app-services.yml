@@ -1,31 +1,31 @@
 version: '3.1'
 
 services:
-  powerbiz_writedb:
+  user_writedb:
     image: postgres:11
-    container_name: powerbiz_writedb
+    container_name: user_writedb
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
-      - POSTGRES_DB=powerbiz_writedb
+      - POSTGRES_DB=user_writedb
     ports:
       - 5431:5432
     volumes:
-      - powerbiz_writedata:/var/lib/postgresql/data
+      - user_writedata:/var/lib/postgresql/data
     networks:
       - powerbizNet
 
-  powerbiz_readdb:
+  user_readdb:
     image: postgres:11
-    container_name: powerbiz_readdb
+    container_name: user_readdb
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=Default123
-      - POSTGRES_DB=powerbiz_readdb
+      - POSTGRES_DB=user_readdb
     ports:
       - 5432:5432
     volumes:
-      - powerbiz_readdata:/var/lib/postgresql/data
+      - user_readdata:/var/lib/postgresql/data
     networks:
       - powerbizNet
 
@@ -45,8 +45,8 @@ services:
       - powerbizNet
 
 volumes:
-  powerbiz_writedata:
-  powerbiz_readdata:
+  user_writedata:
+  user_readdata:
 
 networks:
   powerbizNet:

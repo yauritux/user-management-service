@@ -1,7 +1,7 @@
-package com.power.usercmdsvc.infrastructure.api.commands.interceptors;
+package com.power.usercmdsvc.infrastructure.api.command.interceptor;
 
-import com.power.usercmdsvc.domain.commands.RegisterUserCommand;
-import com.power.usercmdsvc.domain.repositories.EmailLookupRepository;
+import com.power.usercmdsvc.domain.service.port.input.command.RegisterUserCommand;
+import com.power.usercmdsvc.domain.repository.EmailLookupRepository;
 import org.axonframework.commandhandling.CommandExecutionException;
 import org.axonframework.commandhandling.CommandMessage;
 import org.axonframework.messaging.MessageDispatchInterceptor;
